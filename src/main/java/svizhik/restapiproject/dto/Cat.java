@@ -8,8 +8,11 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Cat {
+
+    private int id;
     private String name;
     private int age;
     private int weight;
+
 }
 
