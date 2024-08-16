@@ -3,8 +3,9 @@ package svizhik.restapiproject.controller;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import svizhik.restapiproject.dto.Cat;
 import svizhik.restapiproject.service.CatService;
+import svizhik.restapiproject.dto.Cat;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,8 +15,8 @@ import java.util.Map;
 public class MainController {
 
     @GetMapping("/api/cat")
-    public List<Cat> giveCat(@RequestParam (required = false) Integer age) {
-        return CatService.getCats(age);
+    public List<Cat> getCat(@RequestParam(required = false) Integer age) {
+        return CatService.getCat(age);
     }
 
     @PostMapping("/api/cat")
@@ -27,7 +28,6 @@ public class MainController {
         return new ResponseEntity<>(response, HttpStatusCode.valueOf(200));
     }
 
-    //update
     @PutMapping("/api/cat")
     public ResponseEntity<?> updateCat(@RequestParam int id, @RequestBody Cat updatedCat) {
         boolean isUpdated = CatService.updateCat(id, updatedCat);
@@ -41,11 +41,11 @@ public class MainController {
 
     @DeleteMapping("/api/cat")
     public ResponseEntity<?> deleteCat(@RequestParam Integer id) {
-        int count = CatService.deleteCats(id);
+        int count = CatService.deleteCat(id);
         Map<String, Object> response = new HashMap<>();
         response.put("message", "Размер List<Cat> изменился на:");
         response.put("changedCount", count);
         return new ResponseEntity<>(response, HttpStatusCode.valueOf(200));
     }
-}
 
+}

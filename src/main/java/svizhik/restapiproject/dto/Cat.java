@@ -1,5 +1,6 @@
 package svizhik.restapiproject.dto;
 import lombok.*;
+//import org.springframework.data.annotation.Id;
 
 
 @Data
@@ -9,7 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 public class Cat {
 
-    private int id;
+    private Integer id;
     private String name;
     private int age;
     private int weight;
