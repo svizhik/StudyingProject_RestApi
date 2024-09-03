@@ -1,29 +1,33 @@
 package svizhik.restapiproject.service;
 
-import svizhik.restapiproject.dao.CatDAO;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import svizhik.restapiproject.dao.CatDao;
 import svizhik.restapiproject.dto.Cat;
 
-import java.sql.*;
 import java.util.List;
+import java.util.Optional;
 
-
+@Service
+@RequiredArgsConstructor
 public class CatService {
 
+    private final CatDao catDao;
 
-    public static List<Cat> getCat(Integer age) {
-        return CatDAO.selectCat(age);
+    public List<Cat> getCat(Integer age) {
+        return catDao.selectCat(age);
     }
 
-    public static boolean addCat(Cat newCat) {
-        return CatDAO.insertCat(newCat);
+    public boolean addCat(Cat newCat) {
+        return catDao.insertCat(newCat);
     }
 
-    public static boolean updateCat(int id, Cat newCat) {
-        return CatDAO.updateCat(id, newCat);
+    public boolean updateCat(Optional<Cat> newCat) {
+        return catDao.updateCat(newCat);
     }
 
-    public static int deleteCat(Integer id) {
-        return CatDAO.deleteCat(id);
+    public int deleteCat(Integer id) {
+        return catDao.deleteCat(id);
     }
 
 }
