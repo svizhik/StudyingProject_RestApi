@@ -13,8 +13,4 @@ import svizhik.restapiproject.service.CatService;
 public class CatServiceTest {
 
 
-
-
-
-
 }
