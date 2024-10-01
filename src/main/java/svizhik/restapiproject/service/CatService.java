@@ -14,8 +14,16 @@ public class CatService {
 
     private final CatDao catDao;
 
+    public List<Cat> getAllCats() {
+        return catDao.selectAllCats();
+    }
+
     public List<Cat> getCat(Integer age) {
         return catDao.selectCat(age);
+    }
+
+    public List<Cat> getCatId(Integer id) {
+        return catDao.selectCatId(id);
     }
 
     public boolean addCat(Cat newCat) {
@@ -26,7 +34,7 @@ public class CatService {
         return catDao.updateCat(newCat);
     }
 
-    public int deleteCat(Integer id) {
+    public boolean deleteCat(Integer id) {
         return catDao.deleteCat(id);
     }
 

@@ -7,7 +7,8 @@ import java.util.List;
 
 public interface CatRepository extends JpaRepository <Cat, Long> {
     List<Cat> findCatByAge(Integer age);
-    int deleteById(Integer id);
+    Integer deleteById(Integer id);
+    List<Cat> findCatById(Integer id);
     //save() уже есть внутри JpaRepository для insert и update,
     // так же и deleteCatById(), так же и findAll()
 }

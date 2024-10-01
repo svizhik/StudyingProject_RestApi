@@ -1,5 +1,6 @@
 package svizhik.restapiproject.dao;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 import svizhik.restapiproject.dto.Cat;
@@ -13,13 +14,14 @@ public class CatDao {
 
     private final CatRepository catRepository;
 
-    public CatDao(CatRepository catRepository) {
-        this.catRepository = catRepository;
-    }
+    public CatDao(CatRepository catRepository) {this.catRepository = catRepository;}
 
-    //todo: Как написать, чтобы выводил весь список, если нет аргументов?
     public List<Cat> selectAllCats() {
         return catRepository.findAll();
+    }
+
+    public List<Cat> selectCatId(Integer id) {
+        return catRepository.findCatById(id);
     }
 
     public List<Cat> selectCat(Integer age) {
@@ -43,8 +45,13 @@ public class CatDao {
         return false;
     }
 
-    public int deleteCat(Integer id) {
-        return catRepository.deleteById(id);
+    public boolean deleteCat(Integer id) {
+        if (catRepository.existsById(Long.valueOf(id))) {
+            catRepository.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
